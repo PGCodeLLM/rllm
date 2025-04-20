@@ -285,6 +285,7 @@ class vLLMRollout(BaseRollout):
                             non_tensor_batch=non_tensor_batch,
                             meta_info=prompts.meta_info)
         if self.reward_fn is not None and not is_validation:
+            print(f"YYHH Rank {torch.distributed.get_rank()}, TP rank {self.tensor_parallel_rank} `generate_sequence` reward_fn")
             reward_tensor = self.reward_fn(batch)
             batch.batch['token_level_scores'] = reward_tensor
 

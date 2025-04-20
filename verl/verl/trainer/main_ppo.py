@@ -79,7 +79,7 @@ class RewardManager():
             data_source = data_item.non_tensor_batch['data_source']
             compute_score_fn = _select_rm_score_fn(data_source)
             score = compute_score_fn(data_source=data_source, llm_solution=sequences_str, ground_truth=ground_truth)
-            
+            print(f"YYHH Score: {score}, Data Source: {data_source}")
             # with print_lock:
             #     if data_source not in already_print_data_sources:
             #         already_print_data_sources[data_source] = 0

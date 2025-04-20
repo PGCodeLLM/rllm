@@ -198,3 +198,19 @@ rllm/data/train/code/livecodebench.json
 rllm/data/train/code/kodcode.json
 rllm/data/train/code/primeintellect.json
 rllm/data/train/code/primeintellect_dedupe.json
+
+# Ignore the parquet files
+deepcoder_train.json
+deepcoder_train.parquet
+test_codeforces.json
+test_codeforces.parquet
+test_humanevalplus.json
+test_humanevalplus.parquet
+train_livecodebench.json
+train_livecodebench.parquet
+train_primeintellect.json
+train_primeintellect.parquet
+train_taco.json
+train_taco.parquet
+test_livecodebench.json
+test_livecodebench.parquet

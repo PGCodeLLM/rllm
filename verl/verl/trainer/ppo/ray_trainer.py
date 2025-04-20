@@ -622,8 +622,10 @@ class RayPPOTrainer(object):
                         if not self.config.actor_rollout_ref.rollout.compute_reward:
                             reward_tensor = self.reward_fn(batch)
                             batch.batch['token_level_scores'] = reward_tensor
+                            print(f'YYHH Compute reward: {reward_tensor}')
                         else:
                             reward_tensor = batch.batch['token_level_scores']
+                            print(f'YYHH Use reward from batch: {reward_tensor}')
                         # Rejection sampling based on rewards
                         # Group rewards by uid
                         uids = batch.non_tensor_batch['uid']
