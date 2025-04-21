@@ -383,5 +383,8 @@ if __name__ == "__main__":
         ))
     return reward_response.is_correct
 
-def repomind_reward_fn_se():
-    pass
+def repomind_reward_fn_se() -> bool:
+    """
+    Only return True or False
+    """
+    ...
