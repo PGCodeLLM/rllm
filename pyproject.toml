@@ -75,8 +75,7 @@ verl = [
     "verl==0.6.1",
     "torch>=2.8.0",
     "torchvision>=0.23.0",
-    "vllm>=0.10.2,<=0.11.0",
-    "flash-attn>=2.8.1",
+    "vllm==0.11.0",
     "qwen-vl-utils",
 ]
 
@@ -127,10 +126,6 @@ override-dependencies = [
     "rich>=13.9.4",
 ]
 
-[tool.uv.extra-build-dependencies]
-flash-attn = [
-    { requirement = "torch", match-runtime = true },
-]
 
 [tool.ruff]
 line-length = 5000 # TODO: Reduce this to a more reasonable value
