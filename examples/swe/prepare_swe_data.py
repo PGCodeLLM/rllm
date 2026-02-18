@@ -3,12 +3,12 @@ from datasets import load_dataset
 from rllm.data.dataset import DatasetRegistry
 
 SWE_DATASETS = [
-    "R2E-Gym/R2E-Gym-Subset",
-    "R2E-Gym/R2E-Gym-Lite",
-    "R2E-Gym/R2E-Gym-V1",
-    "R2E-Gym/SWE-Bench-Lite",
+    # "R2E-Gym/R2E-Gym-Subset",
+    # "R2E-Gym/R2E-Gym-Lite",
+    # "R2E-Gym/R2E-Gym-V1",
+    # "R2E-Gym/SWE-Bench-Lite",
     "R2E-Gym/SWE-Bench-Verified",
-    "r2e-edits/SweSmith-RL-Dataset",
+    # "r2e-edits/SweSmith-RL-Dataset",
 ]
 
 
