@@ -14,11 +14,11 @@ RLLM_DIR = os.path.dirname(os.path.dirname(os.path.abspath(rllm.__file__)))
 
 SWE_DATASETS = [
     "R2E-Gym/R2E-Gym-Subset",
-    "R2E-Gym/R2E-Gym-Lite",
-    "R2E-Gym/R2E-Gym-V1",
-    "R2E-Gym/SWE-Bench-Lite",
-    "R2E-Gym/SWE-Bench-Verified",
-    "r2e-edits/SweSmith-RL-Dataset",
+    # "R2E-Gym/R2E-Gym-Lite",
+    # "R2E-Gym/R2E-Gym-V1",
+    # "R2E-Gym/SWE-Bench-Lite",
+    # "R2E-Gym/SWE-Bench-Verified",
+    # "r2e-edits/SweSmith-RL-Dataset",
 ]
 
 
@@ -43,7 +43,12 @@ def main():
                 "prompt": [{"role": "system", "content": SWE_SYSTEM_PROMPT}, {"role": "user", "content": SWE_USER_PROMPT.format(problem_statement=problem_statement)}],
                 "ability": "swe",
                 "reward_model": {"style": "rule", "ground_truth": ""},
-                "extra_info": json.dumps(row_dict),
+                "extra_info": {
+                    "problem_statement": problem_statement,
+                    "repo_name": row_dict.get("repo_name", ""),
+                    "docker_image": row_dict.get("docker_image", ""),
+                    "expected_output_json": row_dict.get("expected_output_json", ""),
+                },
             }
 
         return process_fn

@@ -14,16 +14,16 @@ export VLLM_ENGINE_ITERATION_TIMEOUT_S=100000000000
 RLLM_DIR=$(python3 -c "import rllm; import os; print(os.path.dirname(os.path.dirname(rllm.__file__)))")
 
 TRAIN_PATH=/shared_workspace_mfs/datasets/r2e/R2E_Gym_Subset.parquet
-VAL_PATH=/shared_workspace_mfs/datasets/r2e/SWE_Bench_Verified/test.parquet
+VAL_PATH=/shared_workspace_mfs/datasets/r2e/SWE_Bench_Verified/test_verl.parquet
 
-MODEL_SAVE_PATH=/shared_workspace_mfs/ckpt_zl/deepswe_8b
-MODEL_PATH=/shared_workspace_mfs/original_models/Qwen3-8B
+MODEL_SAVE_PATH=/shared_workspace_mfs/ckpt_zl/deepswe_30b
+MODEL_PATH=/shared_workspace_mfs/original_models/Qwen3-32B
 
 python3 -m rllm.trainer.verl.train_agent_ppo \
     algorithm.adv_estimator=rloo \
     data.train_files=${TRAIN_PATH} \
     data.val_files=${VAL_PATH} \
-    data.train_batch_size=8 \
+    data.train_batch_size=64 \
     data.val_batch_size=512 \
     data.max_prompt_length=4096 \
     data.max_response_length=32768 \
@@ -49,7 +49,7 @@ python3 -m rllm.trainer.verl.train_agent_ppo \
     actor_rollout_ref.model.enable_gradient_checkpointing=True \
     actor_rollout_ref.actor.fsdp_config.param_offload=True \
     actor_rollout_ref.actor.fsdp_config.optimizer_offload=True \
-    actor_rollout_ref.rollout.tensor_model_parallel_size=2 \
+    actor_rollout_ref.rollout.tensor_model_parallel_size=8 \
     actor_rollout_ref.rollout.name=vllm \
     actor_rollout_ref.rollout.mode="async" \
     actor_rollout_ref.rollout.enforce_eager=True \
@@ -69,7 +69,7 @@ python3 -m rllm.trainer.verl.train_agent_ppo \
     trainer.experiment_name='swe-agent-rl' \
     trainer.val_before_train=False \
     trainer.n_gpus_per_node=8 \
-    trainer.nnodes=1 \
+    trainer.nnodes=8 \
     trainer.save_freq=10 \
     trainer.test_freq=1000 \
     trainer.default_hdfs_dir=null \
